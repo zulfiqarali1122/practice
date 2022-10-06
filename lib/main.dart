@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     const MaterialApp(
-      home: VideoGames(),      
+      home: VideoGames(),
     ),
   );
 }
@@ -61,8 +61,10 @@ class VideoGames extends StatelessWidget {
       onTap: () {
         Navigator.push(
           mainContext,
-          MaterialPageRoute(
-            builder: (_) => DetailScreen(game: game),
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) {
+              return DetailScreen(game: game);
+            },
           ),
         );
       },
@@ -73,7 +75,7 @@ class VideoGames extends StatelessWidget {
 class DetailScreen extends StatelessWidget {
   final Game game;
   const DetailScreen({Key? node, required this.game}) : super(key: node);
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
