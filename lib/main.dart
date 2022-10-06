@@ -1,17 +1,14 @@
-// PROFESSIONAL FRONT-END ENGINEER 
-
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(
     const MaterialApp(
-      home: VideoGames(),
-      debugShowCheckedModeBanner: false,
+      home: VideoGames(),      
     ),
   );
 }
 
-// model class for game...
+// PODO class....
 class Game {
   final String name;
   final int rating;
@@ -43,18 +40,52 @@ class VideoGames extends StatelessWidget {
           shrinkWrap: true,
           itemCount: _listOfVideoGames.length,
           separatorBuilder: (_, i) => const Divider(),
-          itemBuilder: (build, index) => _gameTile(_listOfVideoGames[index]),
+          itemBuilder: (context, index) =>
+              _gameTile(_listOfVideoGames[index], context),
         ),
       ),
     );
   }
 
-  Widget _gameTile(Game game) {
+  Widget _gameTile(Game game, BuildContext mainContext) {
     return ListTile(
+      dense: true,
       title: Text(game.name),
+      subtitle: Text("Rating : ${game.rating.toString()}"),
       leading: const CircleAvatar(
-          child: Icon(Icons.gamepad_rounded, color: Colors.yellow)),
-      subtitle: Text(game.rating.toString()),
+        child: Icon(
+          Icons.gamepad_rounded,
+          color: Colors.yellow,
+        ),
+      ),
+      onTap: () {
+        Navigator.push(
+          mainContext,
+          MaterialPageRoute(
+            builder: (_) => DetailScreen(game: game),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  final Game game;
+  const DetailScreen({Key? node, required this.game}) : super(key: node);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(game.name.toUpperCase())),
+      body: Scaffold(
+        body: Center(
+          child: Text(
+            "Rating : ${game.rating.toString()}",
+            style: Theme.of(context).textTheme.headline2,
+          ),
+        ),
+      ),
     );
   }
 }
