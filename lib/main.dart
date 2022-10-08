@@ -8,7 +8,7 @@ void main() {
   );
 }
 
-// PODO class....
+// PODO class.....
 class Game {
   final String name;
   final int rating;
