@@ -26,6 +26,7 @@ class VideoGames extends StatelessWidget {
     Game(name: "Need For Speed", rating: 9),
     Game(name: "Age Of Empires", rating: 10),
     Game(name: "Project: IGI", rating: 10),
+    Game(name: "Tropico", rating: 10),
   ];
 
   const VideoGames({Key? key}) : super(key: key);
