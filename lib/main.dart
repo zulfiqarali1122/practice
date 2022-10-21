@@ -4,6 +4,7 @@ void main() {
   runApp(
     const MaterialApp(
       home: VideoGames(),
+      debugShowCheckedModeBanner: false,
     ),
   );
 }
